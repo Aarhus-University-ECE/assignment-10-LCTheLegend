@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
   print_list(new);
   printf("%d", sum_squares(ns));
   */
-  struct tree_node *root;
+    struct tree_node *root = NULL;
 
   root = Initialize(root);
   root = Insert(20, root);
@@ -32,16 +32,30 @@ int main(int argc, char **argv) {
   root = Insert(40, root);
   root = Insert(45, root);
   root = Insert(42, root);
-  
-  root = Remove(45, root);
-  root = Insert(17, root);
-  root = Insert(3, root);
-  printf("%d ", Contains(3, root));
-  //root = Remove(1, root);
-  root = Remove(3, root);
 
-  printf("%d ", Contains(3, root));
-  printf("%d ", Contains(20, root));
-  printf("%d", Contains(31, root));
-  return 0;
+  root = Insert(3, root);
+
+  root = Remove(3, root);
+  root = Insert(-1, root);
+  root = Insert(-1, root);
+  root = Remove(-1, root);
+  root = Remove(-1, root);
+  root = Remove(45, root);
+  root = Remove(42, root);
+  root = Insert(16, root);
+  root = Remove(7, root);
+
+  root = Remove(1, root);
+  root = Remove(7, root);
+  root = Remove(12, root);
+  root = Remove(9, root);
+  root = Remove(15, root);
+  root = Remove(5, root);
+  root = Remove(42, root);
+  root = Remove(45, root);
+  root = Remove(25, root);
+  root = Remove(40, root);
+  root = Remove(30, root);
+  root = Remove(20, root);
+  root = Remove(16, root);
 }

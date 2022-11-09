@@ -35,7 +35,27 @@ struct tree_node *Remove(int x, struct tree_node *t) {
   {
     return t;
   }
-  
+  if(x == t -> item)
+  {
+    tree_node *temp = t;
+    if(t -> right != NULL)
+      temp = temp -> right;
+    tree_node *temp2;
+    if(t -> left == NULL && t -> right == NULL)
+    {
+      t = NULL;
+      return t;
+    }
+    while(temp -> left != NULL)
+      {
+        temp2 = temp;
+        temp = temp -> left;
+      }
+      t -> item = temp -> item;
+      temp2 -> left = NULL;
+      free(temp);
+      return t;
+  }
   tree_node *temp = t;
   int count = 0;
   tree_node *temp1;
@@ -47,7 +67,7 @@ struct tree_node *Remove(int x, struct tree_node *t) {
       temp = temp->right;
       count = 1;
     }
-    if((temp -> item) > x)
+    else if((temp -> item) > x)
     {
       temp = temp->left;
       count = 0;
@@ -69,13 +89,32 @@ struct tree_node *Remove(int x, struct tree_node *t) {
   }
 
   tree_node *temp2 = temp;
-  tree_node *temp3;
-  while(temp2 -> left != NULL)
+  tree_node *temp3 = temp;
+  if(x < t ->item){
+    if(temp2 -> right != NULL)
     {
-      temp3 = temp2;
-      temp2 = temp2 ->left;
+      temp2 = temp2 -> right;
+      if(temp2 -> left == NULL)
+      {
+        temp -> item = temp2 -> item;
+        temp3 -> right = NULL;
+        free(temp2);
+        return t;
+      }
     }
-    
+    while(temp2 -> left != NULL)
+      {
+        temp3 = temp2;
+        temp2 = temp2 ->left;
+      }
+  }
+  else{ 
+    while(temp2 -> left != NULL)
+      {
+        temp3 = temp2;
+        temp2 = temp2 ->left;
+      }
+    }  
   temp3 -> left = NULL;
   temp -> item = temp2 -> item;
   free(temp2);
