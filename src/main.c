@@ -32,7 +32,8 @@ int main(int argc, char **argv) {
   root = Insert(40, root);
   root = Insert(45, root);
   root = Insert(42, root);
-  //root = Remove(45, root);
+  
+  root = Remove(45, root);
   root = Insert(17, root);
   root = Insert(3, root);
   printf("%d ", Contains(3, root));

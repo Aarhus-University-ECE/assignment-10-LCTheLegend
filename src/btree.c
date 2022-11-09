@@ -70,24 +70,13 @@ struct tree_node *Remove(int x, struct tree_node *t) {
 
   tree_node *temp2 = temp;
   tree_node *temp3;
-  if(x < t -> item) {
-    temp2 = temp2 ->right;
-    while(temp2 -> left != NULL)
+  while(temp2 -> left != NULL)
     {
       temp3 = temp2;
       temp2 = temp2 ->left;
     }
-    temp3 -> left = NULL;
-  }
-  else {
-    temp2 = temp2 -> left;
-    while(temp2 -> right != NULL)
-    {
-      temp3 = temp2;
-      temp2 = temp2 -> right;
-    }
-    temp3 -> right = NULL;
-  }
+    
+  temp3 -> left = NULL;
   temp -> item = temp2 -> item;
   free(temp2);
   return t;
