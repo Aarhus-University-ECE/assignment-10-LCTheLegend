@@ -56,6 +56,7 @@ struct tree_node *Remove(int x, struct tree_node *t) {
       free(temp);
       return t;
   }
+
   tree_node *temp = t;
   int count = 0;
   tree_node *temp1;
@@ -107,18 +108,33 @@ struct tree_node *Remove(int x, struct tree_node *t) {
         temp3 = temp2;
         temp2 = temp2 ->left;
       }
+    temp3 -> left = NULL;
+    temp -> item = temp2 -> item;
+    free(temp2);
+    return t;
   }
-  else{ 
-    while(temp2 -> left != NULL)
+  else {
+    if(temp2 -> left != NULL)
+    {
+      temp2 = temp2 -> left;
+      if(temp2 -> right == NULL)
+      {
+        temp -> item = temp2 -> item;
+        temp3 -> left = NULL;
+        free(temp2);
+        return t;
+      }
+    }
+    while(temp2 -> right != NULL)
       {
         temp3 = temp2;
-        temp2 = temp2 ->left;
+        temp2 = temp2 ->right;
       }
-    }  
-  temp3 -> left = NULL;
-  temp -> item = temp2 -> item;
-  free(temp2);
-  return t;
+    temp3 -> right = NULL;
+    temp -> item = temp2 -> item;
+    free(temp2);
+    return t;
+  }
 }
 
 int Contains(int x, struct tree_node *t) {
