@@ -25,10 +25,10 @@ void free_list(node *p) {
 /* print list to console */
 void print_list(node *p) {
   // Add your code for exercise 1
-  if(p == NULL)
+  if(p == NULL) //base case
     return;
-  printf("%d ", p -> value);
-  print_list(p -> next);
+  printf("%d ", p -> value); //prints element
+  print_list(p -> next); //recursive step
   // There is NO testcode for this
 }
 
@@ -36,9 +36,9 @@ int sum = 0;
 
 int sum_squares(node *p) {
   // Add your code for excercise 2 
-  if(p == NULL)
+  if(p == NULL) //base case
     return 0;
-  return p->value * p->value + sum_squares(p -> next);
+  return p->value * p->value + sum_squares(p -> next); //recursive step
   // You can find the tests in tests.cpp
 }
 
@@ -46,9 +46,10 @@ typedef int (*fn_int_to_int)(int);
 
 node *map(node *p, fn_int_to_int f) { 
   // Add your code for excercise 
-  if(p == NULL)
+  if(p == NULL) //base case
     return 0;
-  return make_node(f(p->value), map(p->next,f));
+  return make_node(f(p->value), map(p->next,f)); 
+  //recursive step, it creates a new linked list using the make_node function and maps the values of p with the function f
 
 }
 
